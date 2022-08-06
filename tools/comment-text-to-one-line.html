@@ -15,8 +15,8 @@
             const lines = text.split('\n');
             let newLines = [];
             for (let line of lines) {
-                line = line.replace(/^\s*\/\*+/, "");
-                line = line.replace(/\*\/\s*$/, "");
+                line = line.replace(/\/\*+/g, "");
+                line = line.replace(/\*\//g, "");
                 line = line.replace(/^\s*\*/, "");
                 line = line.replace(/^\s*\/\//, "");
                 newLines.push(line);
@@ -33,14 +33,14 @@
             from.value = `// This
 // is
 
-/* a */
+/* a */ /* sample */
 
 /* 
-    sample
+    text
 */
 
 /**
-    text.
+    :)
 */
 `;
             to.value = convert(from.value);
