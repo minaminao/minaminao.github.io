@@ -28,6 +28,7 @@
             let to = document.getElementById('to');
             from.addEventListener('input', () => {
                 to.value = convert(from.value);
+                navigator.clipboard.writeText(to.value);
             });
 
             from.value = `// This
@@ -44,13 +45,13 @@
  */
 `;
             to.value = convert(from.value);
-
         };
     </script>
 </head>
 
 <body>
     <h1>comment-text-to-one-line</h1>
+    <p>The converted text is automatically copied to your clipboard.</p>
     <textarea id="from" placeholder="from"></textarea>
     <textarea id="to" placeholder="to"></textarea>
 </body>
