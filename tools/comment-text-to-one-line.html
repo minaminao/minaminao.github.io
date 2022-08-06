@@ -16,12 +16,12 @@
             let newLines = [];
             for (let line of lines) {
                 line = line.replace(/^\s*\/\*+/, "");
-                line = line.replace(/^\s*\*\//, "");
+                line = line.replace(/\*\/\s*$/, "");
                 line = line.replace(/^\s*\*/, "");
                 line = line.replace(/^\s*\/\//, "");
                 newLines.push(line);
             }
-            return newLines.join('');
+            return newLines.join('').replace(/\s+/g, " ");
         };
         window.onload = () => {
             let from = document.getElementById('from');
@@ -29,6 +29,22 @@
             from.addEventListener('input', () => {
                 to.value = convert(from.value);
             });
+
+            from.value = `// This
+// is
+
+/* a */
+
+/* 
+    sample
+*/
+
+/**
+    text.
+*/
+`;
+            to.value = convert(from.value);
+
         };
     </script>
 </head>
