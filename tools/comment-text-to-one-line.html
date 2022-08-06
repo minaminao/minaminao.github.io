@@ -21,7 +21,7 @@
                 line = line.replace(/^\s*\/\//, "");
                 newLines.push(line);
             }
-            return newLines.join('').replace(/\s+/g, " ");
+            return newLines.join('').replace(/\s+/g, " ").replace(/^\s+/, "").replace(/\s+$/, "");
         };
         window.onload = () => {
             let from = document.getElementById('from');
