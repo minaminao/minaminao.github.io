@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>comment-text-to-one-line</title>
+    <title>comment-text-to-one-line</title>
     <style>
         textarea {
             width: 30%;
@@ -13,7 +14,7 @@
         const convert = text => {
             const lines = text.split('\n');
             let newLines = [];
-            for(let line of lines) {
+            for (let line of lines) {
                 line = line.replace(/^\s*\/\*+/, "");
                 line = line.replace(/^\s*\*\//, "");
                 line = line.replace(/^\s*\*/, "");
@@ -23,7 +24,7 @@
             return newLines.join('');
         };
         window.onload = () => {
-            let from = document.getElementById('from'); 
+            let from = document.getElementById('from');
             let to = document.getElementById('to');
             from.addEventListener('input', () => {
                 to.value = convert(from.value);
@@ -31,9 +32,11 @@
         };
     </script>
 </head>
+
 <body>
     <h1>comment-text-to-one-line</h1>
     <textarea id="from" placeholder="from"></textarea>
     <textarea id="to" placeholder="to"></textarea>
 </body>
+
 </html>
