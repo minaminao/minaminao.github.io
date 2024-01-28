@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>rst-comment-text-to-one-line</title>
+    <title>comment-to-one-line</title>
     <style>
         textarea {
             width: 30%;
@@ -15,7 +15,10 @@
             const lines = text.split('\n');
             let newLines = [];
             for (let line of lines) {
-                line = line.replace(/^\s*\.+/, "");
+                line = line.replace(/\/\*+/g, "");
+                line = line.replace(/\*\//g, "");
+                line = line.replace(/^\s*\*/, "");
+                line = line.replace(/^\s*\/+/, "");
                 newLines.push(line);
             }
             return newLines.join('').replace(/\s+/g, " ").replace(/^\s+/, "").replace(/\s+$/, "");
@@ -28,8 +31,18 @@
                 navigator.clipboard.writeText(to.value);
             });
 
-            from.value = `.. foo
-.. bar
+            from.value = `// This
+/// is
+
+/* a */ /* sample */
+
+/* 
+    text
+*/
+
+/**
+ *  :)
+ */
 `;
             to.value = convert(from.value);
         };
@@ -37,7 +50,7 @@
 </head>
 
 <body>
-    <h1>rst-comment-text-to-one-line</h1>
+    <h1>comment-to-one-line</h1>
     <p>The converted text is automatically copied to your clipboard.</p>
     <textarea id="from" placeholder="from"></textarea>
     <textarea id="to" placeholder="to"></textarea>

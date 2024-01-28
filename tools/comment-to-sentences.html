@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>comment-text-to-one-line</title>
+    <title>comment-to-sentences</title>
     <style>
         textarea {
             width: 30%;
@@ -21,7 +21,8 @@
                 line = line.replace(/^\s*\/+/, "");
                 newLines.push(line);
             }
-            return newLines.join('').replace(/\s+/g, " ").replace(/^\s+/, "").replace(/\s+$/, "");
+            const one_line_text = newLines.join('').replace(/\s+/g, " ").replace(/^\s+/, "").replace(/\s+$/, "");
+            return one_line_text.replace(/\. /g, ".\n");
         };
         window.onload = () => {
             let from = document.getElementById('from');
@@ -37,11 +38,18 @@
 /* a */ /* sample */
 
 /* 
-    text
+    text.
 */
 
 /**
- *  :)
+ * Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+ * sed do eiusmod tempor incididunt ut labore et dolore magna
+ * aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+ * ullamco laboris nisi ut aliquip ex ea commodo consequat.
+ * Duis aute irure dolor in reprehenderit in voluptate velit 
+ * esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+ * occaecat cupidatat non proident, sunt in culpa qui officia
+ * deserunt mollit anim id est laborum.
  */
 `;
             to.value = convert(from.value);
@@ -50,7 +58,7 @@
 </head>
 
 <body>
-    <h1>comment-text-to-one-line</h1>
+    <h1>comment-to-one-line</h1>
     <p>The converted text is automatically copied to your clipboard.</p>
     <textarea id="from" placeholder="from"></textarea>
     <textarea id="to" placeholder="to"></textarea>
