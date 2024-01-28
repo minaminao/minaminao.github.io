@@ -22,7 +22,7 @@
                 newLines.push(line);
             }
             const one_line_text = newLines.join('').replace(/\s+/g, " ").replace(/^\s+/, "").replace(/\s+$/, "");
-            return one_line_text.replace(/\. /g, ".\n");
+            return one_line_text.replace(/(?<![Ee]\.[Gg]|[Ii]\.[Ee])\. /g, ".\n");
         };
         window.onload = () => {
             let from = document.getElementById('from');
